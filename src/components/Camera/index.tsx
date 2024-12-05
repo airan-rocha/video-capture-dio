@@ -1,12 +1,14 @@
 import { useState, useRef } from 'react';
-import { Button, Text, TouchableOpacity, View } from 'react-native';
+import { Button, Modal, Text, TouchableOpacity, View } from 'react-native';
 import { styles } from './styles';
 
+import { StatusBar } from 'expo-status-bar'
 import { CameraView, CameraType, useCameraPermissions, useMicrophonePermissions,  } from 'expo-camera';
 import * as MediaLibrary from 'expo-media-library';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 import { recordVideo, stopRecordVideo, toggleCameraFacing } from './functions';
+import { VideoPlayer } from '../VideoPlayer';
 
 export default function Camera() {
   const cameraRef = useRef<CameraView>(null);
@@ -16,6 +18,7 @@ export default function Camera() {
   const [permissionMediaLibrary, requestPermissionMediaLibrary] = MediaLibrary.usePermissions();
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const [localMedia, setLocalMedia] = useState<string | null>(null);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   if (!permissionCamera || !permissionMicrophone || !permissionMediaLibrary) {
     return <View />;
@@ -32,7 +35,13 @@ export default function Camera() {
 
   return (
     <View style={styles.container}>
-      <CameraView style={styles.camera} facing={facing} ref={cameraRef} mode='video'>
+      <CameraView 
+        style={styles.camera} 
+        facing={facing} 
+        ref={cameraRef} 
+        mode='video' 
+        ratio='16:9'
+      >
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={() => {
             if(!isRecording){
@@ -46,12 +55,27 @@ export default function Camera() {
               recordVideo(cameraRef, setLocalMedia, setIsRecording);
             }else{
               stopRecordVideo(cameraRef, setIsRecording);
+              setModalVisible(true);
             }
           }}>
             <MaterialIcons name={isRecording ? 'stop-circle' : 'camera'} size={50} color="#fff" />
           </TouchableOpacity>
         </View>
       </CameraView>
+      <Modal 
+        visible={modalVisible}
+        animationType='slide'
+      >
+          <View style={styles.sharingVideoContainer}>
+              {localMedia && <VideoPlayer uri={localMedia} />}
+            <View style={styles.sharingVideoButtonsContainer}>
+              <TouchableOpacity style={styles.sharingVideoButton} onPress={() => setModalVisible(false)}>
+                <Text>Sair</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+      </Modal>
+      <StatusBar style='light' />
     </View>
   );
 }

@@ -15,15 +15,13 @@ export const styles = StyleSheet.create({
     buttonContainer: {
         width:'50%',
         position: 'absolute',
-        bottom: 50,
+        bottom: 90,
         left: '10%',
         flexDirection: 'row',
         backgroundColor: 'transparent',
         justifyContent: 'space-between',
     },
     button: {
-        // width: 70,
-        // height: 70,
         padding: 5,
         justifyContent: 'center',
         alignItems: 'center',
@@ -31,4 +29,16 @@ export const styles = StyleSheet.create({
         borderRadius: 50,
         backgroundColor: '#00000070'
     },
+    sharingVideoContainer: {
+        flex: 1,
+        backgroundColor: "#fff",
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    sharingVideoButtonsContainer: {
+        flexDirection: 'row',
+    },
+    sharingVideoButton: {
+
+    }
 });

@@ -4,23 +4,26 @@ export function toggleCameraFacing(setFacing: React.Dispatch<React.SetStateActio
     setFacing(current => (current === 'back' ? 'front' : 'back'));
 }
 
-export async function recordVideo(cameraRef: React.RefObject<CameraView>, setLocalMedia: React.Dispatch<React.SetStateAction<string | null>>, setRecording: React.Dispatch<React.SetStateAction<boolean>>) {
+export async function recordVideo(cameraRef: React.RefObject<CameraView>, setLocalMedia: React.Dispatch<React.SetStateAction<string | null>>, setIsRecording: React.Dispatch<React.SetStateAction<boolean>>) {
     if(cameraRef.current){
       console.log('recording video');
       try{
-        setRecording(true);
+        setIsRecording(true);
         const video = await cameraRef.current.recordAsync();
-        setLocalMedia(video.uri);
-        console.log("Video: ", video);
+        if(video){
+          setLocalMedia(video.uri);
+          console.log("Video: ", video);
+        }
+        
       }catch (e) {
         console.log('error: ', e);
       }
     }
 }
 
-export async function stopRecordVideo(cameraRef: React.RefObject<CameraView>, setRecording: React.Dispatch<React.SetStateAction<boolean>>) {
+export async function stopRecordVideo(cameraRef: React.RefObject<CameraView>, setIsRecording: React.Dispatch<React.SetStateAction<boolean>>) {
     if(cameraRef.current){
-        setRecording(false);
+        setIsRecording(false);
         console.log('stop recording video');
         await cameraRef.current.stopRecording();
         
