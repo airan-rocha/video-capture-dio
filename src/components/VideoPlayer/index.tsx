@@ -29,6 +29,7 @@ export function VideoPlayer({uri}:videoPlayerProps) {
       <VideoView
         style={styles.video}
         player={player}
+        nativeControls={false}
       />
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={playVideo}>
