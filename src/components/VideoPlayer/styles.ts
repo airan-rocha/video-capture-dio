@@ -10,6 +10,10 @@ export const styles = StyleSheet.create({
   video: {
     height: 400,
     width: 225,
+    backgroundColor: '#000',
+    borderWidth: 3,
+    borderColor: '#000',
+    borderRadius: 5,
   },
   buttonContainer: {
     alignItems: 'center',

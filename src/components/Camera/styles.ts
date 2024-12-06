@@ -12,6 +12,22 @@ export const styles = StyleSheet.create({
     camera: {
     flex: 1,    
     },
+    lateralButtonsContainer: {
+        position: 'absolute',
+        top: '30%',
+        right: 20,
+    },
+    lateralButton: {
+        marginTop: 10,
+        padding: 5,
+        borderRadius: 50,
+        backgroundColor: '#00000070',
+        alignItems: 'center'
+    },
+    lateralTextButton: {
+        color: '#fff',
+        fontSize: 9,
+    },
     buttonContainer: {
         width:'50%',
         position: 'absolute',
@@ -27,7 +43,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginHorizontal: 2,
         borderRadius: 50,
-        backgroundColor: '#00000070'
+        backgroundColor: '#00000070',
     },
     sharingVideoContainer: {
         flex: 1,
@@ -39,6 +55,6 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     sharingVideoButton: {
-
+        margin: 15,
     }
 });

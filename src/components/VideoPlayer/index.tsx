@@ -1,31 +1,3 @@
-// import {useRef, useState} from 'react';
-// import { View, Text } from 'react-native';
-
-// import { Video, ResizeMode } from 'expo-av';
-
-// import { styles } from './styles';
-// import { videoPlayerProps } from './props';
-
-// export function VideoPlayer({uri}:videoPlayerProps) {
-//   const videoRef = useRef(null);
-//   const [status, setStatus] = useState({});
-  
-
-//   return (
-//     <View style={styles.container}>
-//       <Video
-//         ref={videoRef}
-//         style={styles.video}
-//         source={{uri: uri}}
-//         useNativeControls
-//         resizeMode={ResizeMode.CONTAIN}
-//         isLooping={true}
-//         onPlaybackStatusUpdate={status => setStatus(() => status)}
-//       />
-//     </View>
-//   );
-// }
-
 import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 
